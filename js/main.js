@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       searchKeyword: "",
       searchResult: [],
+      submited: false,
     };
 
     this.store = store;
@@ -18,6 +19,10 @@ class App extends React.Component {
   // TODO
   handleChangeInput(event) {
     const searchKeyword = event.target.value;
+
+    if (searchKeyword.length <= 0) {
+      return this.handleReset();
+    }
 
     this.setState({
       searchKeyword,
@@ -34,7 +39,10 @@ class App extends React.Component {
   // TODO
   search(searchKeyword) {
     const searchResult = store.search(searchKeyword);
-    this.setState({ searchResult });
+    this.setState({
+      searchResult,
+      submited: true,
+    });
   }
 
   // TODO
@@ -46,7 +54,7 @@ class App extends React.Component {
     this.setState(() => {
       return { searchKeyword: "" }
     }, () => {
-      console.log("handleReset", this.state.searchKeyword);
+      // console.log("handleReset", this.state.searchKeyword);
     });
   }
 
@@ -60,7 +68,7 @@ class App extends React.Component {
         <div className="container">
           <form
             onSubmit={(event) => this.handleSubmit(event)}
-            // onReset={() => this.handleReset()}
+            onReset={() => this.handleReset()}
           >
             <input
               type="text"
@@ -72,24 +80,26 @@ class App extends React.Component {
             />
             {/* TODO */}
             {this.state.searchKeyword.length > 0 && (
-              <button type="reset" className="btn-reset" onClick={() => this.handleReset()}></button>
+              <button type="reset" className="btn-reset"></button>
             )}
           </form>
           <div className="content">
-            {this.state.searchResult.length > 0 ? (
-              <ul>
+            {this.state.submited && (
+              this.state.searchResult.length > 0 ? (
+                <ul className="result">
                 {this.state.searchResult.map((item) => {
                   return (
                     <li key={item.id}>
-                      <img src={item.imageUrl} alt={item.name}/>
-                      <p>{item.name}</p>
+                    <img src={item.imageUrl} alt={item.name}/>
+                    <p>{item.name}</p>
                     </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <div className="empty-box">검색결과는 없습니다.</div>
-            )}
+                    );
+                  })}
+                  </ul>
+                  ) : (
+                    <div className="empty-box">검색결과는 없습니다.</div>
+                  )
+                )}
           </div>
         </div>
       </>
