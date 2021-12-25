@@ -4,8 +4,10 @@ class App extends React.Component {
   constructor() {
     super();
 
+    // TODO
     this.state = {
       searchKeyword: "",
+      searchResult: [],
     };
   }
 
@@ -61,6 +63,7 @@ class App extends React.Component {
               <button type="reset" className="btn-reset" onClick={() => this.handleReset()}></button>
             )}
           </form>
+          <div className="content"></div>
         </div>
       </>
     );
