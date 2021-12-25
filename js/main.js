@@ -16,6 +16,12 @@ class App extends React.Component {
     });
   }
 
+  // TODO
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('handleSubmit', event, this.state.searchKeyword);
+  }
+
   render() {
     // let resetButton = null;
 
@@ -24,13 +30,13 @@ class App extends React.Component {
     // }
 
     return (
-        <>
+      <>
         <header>
           <h2 className="container">검색</h2>
         </header>
         {/* TODO */}
         <div className="container">
-          <form>
+          <form onSubmit={(event) => this.handleSubmit(event)}>
             <input
               type="text"
               placeholder="검색어를 입력하세요"
@@ -40,8 +46,8 @@ class App extends React.Component {
               onChange={(event) => this.handleChangeInput(event)}
             />
             {/* TODO */}
-            {/* {resetButton} */}
-            {/* {this.state.searchKeyword.length > 0 ? (<button type="reset" className="btn-reset"></button>) : null} */}
+            {/* {resetButton}
+            {this.state.searchKeyword.length > 0 ? (<button type="reset" className="btn-reset"></button>) : null} */}
             {this.state.searchKeyword.length > 0 && (<button type="reset" className="btn-reset"></button>)}
           </form>
         </div>
