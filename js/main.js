@@ -65,7 +65,17 @@ class App extends React.Component {
           </form>
           <div className="content">
             {this.state.searchResult.length > 0 ? (
-              <div>TODO: 검색 결과 목록 출력하기</div>
+              <ul>
+                {this.state.searchResult.map((item) => {
+                  return (
+                    <li>
+                      <img src={item.nubmer} alt={item.name}/>
+                      <p>{item.name}</p>
+                    </li>
+                  );
+                })
+                }
+              </ul>
             ) : (
               <div className="empty-box">검색결과는 없습니다.</div>
             )}
