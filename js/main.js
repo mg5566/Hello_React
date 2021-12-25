@@ -1,5 +1,14 @@
 // TODO
 class App extends React.Component {
+  // TODO
+  constructor() {
+    super();
+
+    this.state = {
+      searchKeyword: "Hello",
+    };
+  }
+
   render() {
     return (
         <>
@@ -9,7 +18,12 @@ class App extends React.Component {
         {/* TODO */}
         <div className="container">
           <form>
-            <input type="text" placeholder="검색어를 입력하세요" autoFocus />
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요"
+              autoFocus
+              value={this.state.searchKeyword}
+            />
             <button type="reset" className="btn-reset"></button>
           </form>
         </div>
