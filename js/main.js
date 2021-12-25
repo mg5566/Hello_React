@@ -11,8 +11,12 @@ class App extends React.Component {
 
   // TODO
   handleChangeInput(event) {
-    this.state.searchKeyword = event.target.value;
-    this.forceUpdate();
+    // this.state.searchKeyword = event.target.value;
+    // this.forceUpdate();
+
+    this.setState({
+      searchKeyword: event.target.value
+    });
   }
 
   render() {
