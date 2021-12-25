@@ -63,7 +63,13 @@ class App extends React.Component {
               <button type="reset" className="btn-reset" onClick={() => this.handleReset()}></button>
             )}
           </form>
-          <div className="content"></div>
+          <div className="content">
+            {this.state.searchResult.length > 0 ? (
+              <div>TODO: 검색 결과 목록 출력하기</div>
+            ) : (
+              <div className="empty-box">검색결과는 없습니다.</div>
+            )}
+          </div>
         </div>
       </>
     );
