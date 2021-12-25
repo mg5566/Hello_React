@@ -1,4 +1,6 @@
-export default class Store {
+import storage from "./storage.js";
+
+class Store {
   constructor(storage) {
     console.log(tag, "constructor");
 
@@ -49,3 +51,7 @@ export default class Store {
     this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
   }
 }
+
+const store = new Store(storage);
+
+export default store;
