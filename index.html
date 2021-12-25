@@ -22,13 +22,24 @@
 
   <script type="text/babel">
     // const element = React.createElement("h1", null, "Hello World");
+    // console.log('react', element);
     // ReactDOM.render(element, document.querySelector("#app"));
+
+    // jsx
+    const element = (
+      <header>
+        <h1>Hello World!!!</h1>
+      </header>
+    );
+    ReactDOM.render(element, document.querySelector("#app"));
+
 
     // document.body.innerHTML = "<h1>Hello World</h1>";
 
-    const h1 = document.createElement("h1");
-    h1.textContent = "Hello World";
-    document.body.appendChild(h1);
+    // const h1 = document.createElement("h1");
+    // h1.textContent = "Hello World";
+    // console.log('h1', h1);
+    // document.body.appendChild(h1);
   </script>
 </body>
 </html>
