@@ -11,15 +11,18 @@ class App extends React.Component {
 
   // TODO
   handleChangeInput(event) {
-    // this.state.searchKeyword = event.target.value;
-    // this.forceUpdate();
-
     this.setState({
       searchKeyword: event.target.value
     });
   }
 
   render() {
+    let resetButton = null;
+
+    if (this.state.searchKeyword.length > 0) {
+      resetButton = (<button type="reset" className="btn-reset"></button>);
+    }
+
     return (
         <>
         <header>
@@ -36,7 +39,8 @@ class App extends React.Component {
               // TODO
               onChange={(event) => this.handleChangeInput(event)}
             />
-            <button type="reset" className="btn-reset"></button>
+            {/* TODO */}
+            {resetButton}
           </form>
         </div>
       </>
