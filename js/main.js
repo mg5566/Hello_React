@@ -1,12 +1,9 @@
 import store from "./js/Store.js";  // 이게 중요하네...
 
-// TODO
 class App extends React.Component {
-  // TODO
   constructor() {
     super();
 
-    // TODO
     this.state = {
       searchKeyword: "",
       searchResult: [],
@@ -16,11 +13,10 @@ class App extends React.Component {
     this.store = store;
   }
 
-  // TODO
   handleChangeInput(event) {
     const searchKeyword = event.target.value;
 
-    if (searchKeyword.length <= 0) {
+    if (searchKeyword.length <= 0 && this.state.submited) {
       return this.handleReset();
     }
 
@@ -29,14 +25,14 @@ class App extends React.Component {
     });
   }
 
-  // TODO
   handleSubmit(event) {
     event.preventDefault();
-
+    if (this.state.searchKeyword.length <= 0) {
+      return;
+    }
     this.search(this.state.searchKeyword);
   }
 
-  // TODO
   search(searchKeyword) {
     const searchResult = store.search(searchKeyword);
     this.setState({
@@ -45,16 +41,15 @@ class App extends React.Component {
     });
   }
 
-  // TODO
   handleReset() {
     this.setState({
       searchKeyword: "",
-      searchResult: [],
+      // searchResult: [],
+      submited: false,
     });
     this.setState(() => {
       return { searchKeyword: "" }
     }, () => {
-      // console.log("handleReset", this.state.searchKeyword);
     });
   }
 
@@ -69,10 +64,8 @@ class App extends React.Component {
           placeholder="검색어를 입력하세요"
           autoFocus
           value={this.state.searchKeyword}
-          // TODO
           onChange={(event) => this.handleChangeInput(event)}
         />
-        {/* TODO */}
         {this.state.searchKeyword.length > 0 && (
           <button type="reset" className="btn-reset"></button>
         )}
@@ -101,7 +94,6 @@ class App extends React.Component {
         <header>
           <h2 className="container">검색</h2>
         </header>
-        {/* TODO */}
         <div className="container">
           {searchForm}
           <div className="content">
