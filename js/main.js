@@ -17,11 +17,11 @@ class App extends React.Component {
   }
 
   render() {
-    let resetButton = null;
+    // let resetButton = null;
 
-    if (this.state.searchKeyword.length > 0) {
-      resetButton = (<button type="reset" className="btn-reset"></button>);
-    }
+    // if (this.state.searchKeyword.length > 0) {
+    //   resetButton = (<button type="reset" className="btn-reset"></button>);
+    // }
 
     return (
         <>
@@ -40,7 +40,9 @@ class App extends React.Component {
               onChange={(event) => this.handleChangeInput(event)}
             />
             {/* TODO */}
-            {resetButton}
+            {/* {resetButton} */}
+            {/* {this.state.searchKeyword.length > 0 ? (<button type="reset" className="btn-reset"></button>) : null} */}
+            {this.state.searchKeyword.length > 0 && (<button type="reset" className="btn-reset"></button>)}
           </form>
         </div>
       </>
