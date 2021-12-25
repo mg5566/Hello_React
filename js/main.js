@@ -1,3 +1,5 @@
+import store from "./Store.js";
+
 // TODO
 class App extends React.Component {
   // TODO
@@ -9,6 +11,8 @@ class App extends React.Component {
       searchKeyword: "",
       searchResult: [],
     };
+
+    this.store = store;
   }
 
   // TODO
@@ -23,7 +27,14 @@ class App extends React.Component {
   // TODO
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handleSubmit', event, this.state.searchKeyword);
+
+    this.search(this.state.searchKeyword);
+  }
+
+  // TODO
+  search(searchKeyword) {
+    const searchResult = store.search(searchKeyword);
+    this.setState({ searchResult });
   }
 
   // TODO
