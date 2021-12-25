@@ -11,8 +11,10 @@ class App extends React.Component {
 
   // TODO
   handleChangeInput(event) {
+    const searchKeyword = event.target.value;
+
     this.setState({
-      searchKeyword: event.target.value
+      searchKeyword,
     });
   }
 
@@ -22,13 +24,19 @@ class App extends React.Component {
     console.log('handleSubmit', event, this.state.searchKeyword);
   }
 
+  // TODO
+  handleReset() {
+    this.setState({
+      searchKeyword: "",
+    });
+    this.setState(() => {
+      return { searchKeyword: "" }
+    }, () => {
+      console.log("handleReset", this.state.searchKeyword);
+    });
+  }
+
   render() {
-    // let resetButton = null;
-
-    // if (this.state.searchKeyword.length > 0) {
-    //   resetButton = (<button type="reset" className="btn-reset"></button>);
-    // }
-
     return (
       <>
         <header>
@@ -36,7 +44,10 @@ class App extends React.Component {
         </header>
         {/* TODO */}
         <div className="container">
-          <form onSubmit={(event) => this.handleSubmit(event)}>
+          <form
+            onSubmit={(event) => this.handleSubmit(event)}
+            // onReset={() => this.handleReset()}
+          >
             <input
               type="text"
               placeholder="검색어를 입력하세요"
@@ -46,9 +57,9 @@ class App extends React.Component {
               onChange={(event) => this.handleChangeInput(event)}
             />
             {/* TODO */}
-            {/* {resetButton}
-            {this.state.searchKeyword.length > 0 ? (<button type="reset" className="btn-reset"></button>) : null} */}
-            {this.state.searchKeyword.length > 0 && (<button type="reset" className="btn-reset"></button>)}
+            {this.state.searchKeyword.length > 0 && (
+              <button type="reset" className="btn-reset" onClick={() => this.handleReset()}></button>
+            )}
           </form>
         </div>
       </>
