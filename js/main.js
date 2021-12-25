@@ -1,4 +1,4 @@
-import store from "./Store.js";
+import store from "./js/Store.js";  // 이게 중요하네...
 
 // TODO
 class App extends React.Component {
@@ -41,6 +41,7 @@ class App extends React.Component {
   handleReset() {
     this.setState({
       searchKeyword: "",
+      searchResult: [],
     });
     this.setState(() => {
       return { searchKeyword: "" }
@@ -79,13 +80,12 @@ class App extends React.Component {
               <ul>
                 {this.state.searchResult.map((item) => {
                   return (
-                    <li>
-                      <img src={item.nubmer} alt={item.name}/>
+                    <li key={item.id}>
+                      <img src={item.imageUrl} alt={item.name}/>
                       <p>{item.name}</p>
                     </li>
                   );
-                })
-                }
+                })}
               </ul>
             ) : (
               <div className="empty-box">검색결과는 없습니다.</div>
