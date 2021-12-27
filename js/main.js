@@ -99,6 +99,19 @@ class App extends React.Component {
       )
     );
 
+    // TODO
+    const tabs = (
+      <ul className="tabs">
+        {Object.values(TabType).map((tabType) => {
+          return (
+            <li key={tabType}>
+              {TabLabel[tabType]}
+            </li>
+          );
+        })}
+      </ul>
+    );
+
     return (
       <>
         <header>
@@ -107,7 +120,9 @@ class App extends React.Component {
         <div className="container">
           {searchForm}
           <div className="content">
-            {this.state.submited && searchResult}
+            {/* TODO */}
+            {/* {this.state.submited && searchResult} */}
+            {this.state.submited ? searchResult : tabs}
           </div>
         </div>
       </>
