@@ -18,6 +18,8 @@ class App extends React.Component {
       searchKeyword: "",
       searchResult: [],
       submited: false,
+      // TODO
+      selectedTab: TabType.KEYWORD,
     };
 
     this.store = store;
@@ -101,15 +103,24 @@ class App extends React.Component {
 
     // TODO
     const tabs = (
-      <ul className="tabs">
-        {Object.values(TabType).map((tabType) => {
-          return (
-            <li key={tabType}>
-              {TabLabel[tabType]}
-            </li>
-          );
-        })}
-      </ul>
+      <>
+        <ul className="tabs">
+          {Object.values(TabType).map((tabType) => {
+            return (
+              <li
+                className={this.state.selectedTab === tabType ? 'active' : ''}
+                // TODO
+                onClick={() => this.setState({ selectedTab: tabType })}
+                key={tabType}
+              >
+                {TabLabel[tabType]}
+              </li>
+            );
+          })}
+        </ul>
+        {this.state.selectedTab === TabType.KEYWORD && <>TODO: 추천 검색어</>}
+        {this.state.selectedTab === TabType.HISTORY && <>TODO: 최근 검색어</>}
+      </>
     );
 
     return (
