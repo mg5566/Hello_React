@@ -18,12 +18,19 @@ class App extends React.Component {
       searchKeyword: "",
       searchResult: [],
       submited: false,
-      // TODO
       selectedTab: TabType.KEYWORD,
+      keywordList: [],
     };
 
     this.store = store;
   }
+
+  // TODO
+  componentDidMount() {
+    const keywordList = store.getKeywordList();
+    this.setState({ keywordList });
+  }
+
 
   handleChangeInput(event) {
     const searchKeyword = event.target.value;
@@ -101,7 +108,11 @@ class App extends React.Component {
       )
     );
 
-    // TODO
+    //TODO
+    const keywordList = {
+
+    }
+
     const tabs = (
       <>
         <ul className="tabs">
@@ -109,7 +120,6 @@ class App extends React.Component {
             return (
               <li
                 className={this.state.selectedTab === tabType ? 'active' : ''}
-                // TODO
                 onClick={() => this.setState({ selectedTab: tabType })}
                 key={tabType}
               >
@@ -131,8 +141,6 @@ class App extends React.Component {
         <div className="container">
           {searchForm}
           <div className="content">
-            {/* TODO */}
-            {/* {this.state.submited && searchResult} */}
             {this.state.submited ? searchResult : tabs}
           </div>
         </div>
