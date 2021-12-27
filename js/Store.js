@@ -31,21 +31,25 @@ class Store {
     );
   }
 
-  // addHistory(keyword = "") {
-  //   keyword = keyword.trim();
-  //   if (!keyword) {
-  //     return;
-  //   }
+  // TODO
+  addHistory(keyword = "") {
+    keyword = keyword.trim();
+    if (!keyword) {
+      return;
+    }
 
-  //   const hasHistory = this.storage.historyData.some(
-  //     (history) => history.keyword === keyword
-  //   );
-  //   if (hasHistory) this.removeHistory(keyword);
+    // 이미 존재하는 지 확인하는 함수 구현
+    const hasHistory = this.storage.historyData.some(
+      (history) => history.keyword === keyword
+    );
+    // 이미 존재하면 지우고, 새로 등록해서 date 를 최신화시킨다.
+    if (hasHistory) this.removeHistory(keyword);
 
-  //   const date = new Date();
-  //   this.storage.historyData.push({ keyword, date });
-  //   this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
-  // }
+    // 새로 추가하기
+    const date = new Date();
+    this.storage.historyData.push({ keyword, date });
+    this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
+  }
 }
 
 const store = new Store(storage);
