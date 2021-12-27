@@ -13,9 +13,9 @@ class Store {
     ));
   }
 
-  // getKeywordList() {
-  //   return this.storage.keywordData;
-  // }
+  getKeywordList() {
+    return this.storage.keywordData;
+  }
 
   // getHistoryList() {
   //   return this.storage.historyData.sort(this._sortHistory);
