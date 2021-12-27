@@ -58,11 +58,15 @@ class App extends React.Component {
   }
 
   search(searchKeyword) {
+    // TODO
     const searchResult = store.search(searchKeyword);
+    const historyList = store.getHistoryList();
+
     this.setState({
       searchKeyword,
       searchResult,
       submited: true,
+      historyList,
     });
   }
 
@@ -77,7 +81,6 @@ class App extends React.Component {
     });
   }
 
-  // TODO
   handleClickRemoveHistory(event, keyword) {
     // 상위에도 event 가 있기때문에 해당 event 가 발생하면 검색기록이 검색되는 event 가 발생한다.
     // 따라서 해당 event 를 상위 event 로 전파시키면 안됩니다.
@@ -153,7 +156,6 @@ class App extends React.Component {
               <span className="date">{formatRelativeDate(item.date)}</span>
               <button
                 className="btn-remove"
-                // TODO
                 onClick={(event) => this.handleClickRemoveHistory(event, item.keyword)}
               ></button>
             </li>
