@@ -1,4 +1,5 @@
-import store from "./js/Store.js";  // 이게 중요하네...
+import { formatRelativeDate } from "./js/helpers.js"
+import store from "./js/Store.js";
 
 const TabType = {
   KEYWORD: "KEYWORD",
@@ -20,15 +21,22 @@ class App extends React.Component {
       submited: false,
       selectedTab: TabType.KEYWORD,
       keywordList: [],
+      // TODO
+      historyList: [],
     };
 
     this.store = store;
   }
 
-  // TODO
   componentDidMount() {
     const keywordList = store.getKeywordList();
-    this.setState({ keywordList });
+
+    // TODO
+    const historyList = store.getHistoryList();
+    this.setState({
+      keywordList,
+      historyList,
+    });
   }
 
 
@@ -55,7 +63,6 @@ class App extends React.Component {
   search(searchKeyword) {
     const searchResult = store.search(searchKeyword);
     this.setState({
-      // TODO
       searchKeyword,
       searchResult,
       submited: true,
@@ -65,7 +72,6 @@ class App extends React.Component {
   handleReset() {
     this.setState({
       searchKeyword: "",
-      // searchResult: [],
       submited: false,
     });
     this.setState(() => {
@@ -73,14 +79,6 @@ class App extends React.Component {
     }, () => {
     });
   }
-
-  // handleKeyword(keyword) {
-  //   this.setState({
-  //     searchKeyword: keyword,
-  //   }, () => {
-  //     this.search(this.state.searchKeyword);
-  //   })
-  // }
 
   render() {
     const searchForm = (
@@ -118,7 +116,6 @@ class App extends React.Component {
       )
     );
 
-    //TODO
     const keywordList = (
       <ul className="list">
         {this.state.keywordList.map((item, index) => {
@@ -129,6 +126,27 @@ class App extends React.Component {
             >
               <span className="number">{index + 1}</span>
               <span>{item.keyword}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+
+    // TODO
+    const historyList = (
+      <ul className="list">
+        {this.state.historyList.map((item) => {
+          return (
+            <li
+              key={item.id}
+              onClick={() => this.search(item.keyword)}
+            >
+              <span>{item.keyword}</span>
+              <span className="date">{formatRelativeDate(item.date)}</span>
+              <button
+                className="btn-remove"
+                onClick={(event) => this.handleClickRemoveHistory(event, item.keyword)}
+              ></button>
             </li>
           );
         })}
@@ -151,7 +169,7 @@ class App extends React.Component {
           })}
         </ul>
         {this.state.selectedTab === TabType.KEYWORD && keywordList}
-        {this.state.selectedTab === TabType.HISTORY && <>TODO: 최근 검색어</>}
+        {this.state.selectedTab === TabType.HISTORY && historyList}
       </>
     );
 
