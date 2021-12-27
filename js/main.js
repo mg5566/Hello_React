@@ -21,7 +21,6 @@ class App extends React.Component {
       submited: false,
       selectedTab: TabType.KEYWORD,
       keywordList: [],
-      // TODO
       historyList: [],
     };
 
@@ -30,8 +29,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const keywordList = store.getKeywordList();
-
-    // TODO
     const historyList = store.getHistoryList();
     this.setState({
       keywordList,
@@ -82,7 +79,12 @@ class App extends React.Component {
 
   // TODO
   handleClickRemoveHistory(event, keyword) {
+    event.stopPropagation();
 
+    store.removeHistory(keyword);
+    // update history state
+    const historyList = store.getHistoryList();
+    this.setState({ historyList });
   }
 
   render() {
