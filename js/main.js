@@ -80,6 +80,11 @@ class App extends React.Component {
     });
   }
 
+  // TODO
+  handleClickRemoveHistory(event, keyword) {
+
+  }
+
   render() {
     const searchForm = (
       <form
@@ -132,7 +137,6 @@ class App extends React.Component {
       </ul>
     );
 
-    // TODO
     const historyList = (
       <ul className="list">
         {this.state.historyList.map((item) => {
@@ -145,6 +149,7 @@ class App extends React.Component {
               <span className="date">{formatRelativeDate(item.date)}</span>
               <button
                 className="btn-remove"
+                // TODO
                 onClick={(event) => this.handleClickRemoveHistory(event, item.keyword)}
               ></button>
             </li>
