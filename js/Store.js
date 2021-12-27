@@ -1,3 +1,4 @@
+import { createNextId } from "./helpers.js";
 import storage from "./storage.js";
 
 class Store {
@@ -8,6 +9,8 @@ class Store {
   }
 
   search(keyword) {
+    this.addHistory(keyword);
+
     return (this.storage.productData.filter((product) =>
       product.name.includes(keyword)
     ));
@@ -46,8 +49,9 @@ class Store {
     if (hasHistory) this.removeHistory(keyword);
 
     // 새로 추가하기
+    const id = createNextId(this.storage.historyData);
     const date = new Date();
-    this.storage.historyData.push({ keyword, date });
+    this.storage.historyData.push({ id, keyword, date });
     this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
   }
 }
