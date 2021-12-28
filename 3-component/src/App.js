@@ -26,14 +26,16 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { searchKeyword } = this.state;
+
     return (
       <>
         <Header title={"Searching"} />
         <div className="container">
           <SearchForm
-            value={this.state.searchKeyword}
+            value={searchKeyword}
             onChange={(value) => this.handleChangeInput(value)}
-            onSubmit={() => this.search(this.state.searchKeyword)}
+            onSubmit={() => this.search(searchKeyword)}
             onReset={() => this.handleReset()}
           />
         </div>
