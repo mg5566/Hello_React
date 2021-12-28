@@ -3,7 +3,6 @@ import Header from "./components/Header.js";
 import SearchForm from "./components/SearchForm.js";
 
 export default class App extends React.Component {
-  // TODO
   constructor() {
     super();
 
@@ -31,7 +30,6 @@ export default class App extends React.Component {
       <>
         <Header title={"Searching"} />
         <div className="container">
-          {/* TODO */}
           <SearchForm
             value={this.state.searchKeyword}
             onChange={(value) => this.handleChangeInput(value)}
