@@ -4,12 +4,26 @@ import SearchForm from "./components/SearchForm.js";
 
 export default class App extends React.Component {
   // TODO
+  constructor() {
+    super();
+
+    this.state = {
+      searchKeyword: "",
+    }
+  }
   search(searchKeyword) {
     console.log("App search()", searchKeyword);
   }
 
   handleReset() {
     console.log("TODO: reset button");
+  }
+
+  handleChangeInput(searchKeyword) {
+    if (searchKeyword.length <= 0) {
+      this.handleReset();
+    }
+    this.setState({ searchKeyword });
   }
 
   render() {
@@ -19,7 +33,9 @@ export default class App extends React.Component {
         <div className="container">
           {/* TODO */}
           <SearchForm
-            onSubmit={(searchKeyword) => this.search(searchKeyword)}
+            value={this.state.searchKeyword}
+            onChange={(value) => this.handleChangeInput(value)}
+            onSubmit={() => this.search(this.state.searchKeyword)}
             onReset={() => this.handleReset()}
           />
         </div>
