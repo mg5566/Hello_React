@@ -24,7 +24,6 @@ export default class App extends React.Component {
   }
 
   handleReset() {
-    console.log("TODO: reset button");
     this.setState({
       submitted: false,
       searchKeyword: "",

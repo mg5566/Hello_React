@@ -8,7 +8,18 @@ const SearchResult = ({ data = [] }) => {
   }
 
   return (
-    <div className="result">검색결과란다...</div>
+    <div className="result">
+      <ul className="result">
+        {data.map((item) => {
+          return (
+            <li key={item.id}>
+              <img src={item.imageUrl} alt={item.name} />
+              <p>{item.name}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
