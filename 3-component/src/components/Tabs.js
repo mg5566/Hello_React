@@ -1,6 +1,6 @@
 import React from "react";
 
-const TabType = {
+export const TabType = {
   KEYWORD: "KEYWORD",
   HISTORY: "HISTORY",
 };
