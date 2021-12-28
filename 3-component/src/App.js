@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "./components/Header.js";
 import SearchForm from "./components/SearchForm.js";
+import SearchResult from "./components/SearchResult.js";
+import store from "./Store.js";
 
 export default class App extends React.Component {
   constructor() {
@@ -8,14 +10,25 @@ export default class App extends React.Component {
 
     this.state = {
       searchKeyword: "",
+      searchResult: [],
+      submitted: false,
     }
   }
   search(searchKeyword) {
-    console.log("App search()", searchKeyword);
+    const searchResult = store.search(searchKeyword);
+
+    this.setState({
+      submitted: true,
+      searchResult,
+    });
   }
 
   handleReset() {
     console.log("TODO: reset button");
+    this.setState({
+      submitted: false,
+      searchKeyword: "",
+    })
   }
 
   handleChangeInput(searchKeyword) {
@@ -26,7 +39,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { searchKeyword } = this.state;
+    const { searchKeyword, searchResult, submitted } = this.state;
 
     return (
       <>
@@ -38,6 +51,13 @@ export default class App extends React.Component {
             onSubmit={() => this.search(searchKeyword)}
             onReset={() => this.handleReset()}
           />
+          <div className="content">
+            {submitted && (
+              <SearchResult
+                data={searchResult}
+              />
+            )}
+          </div>
         </div>
       </>
     );
