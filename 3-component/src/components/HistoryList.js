@@ -3,6 +3,46 @@ import List from "./List.js";
 import store from "../Store.js";
 import { formatRelativeDate } from "../helpers";
 
+// 조합 특수화
+export default class HistoryList extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      historyList: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetch();
+  }
+
+  fetch() {
+    const historyList = store.getHistoryList();
+    this.setState({ historyList });
+  }
+
+  handleClickRemove(keyword) {
+    store.removeHistory(keyword);
+    this.fetch();
+  }
+
+  render() {
+    const { onClick } = this.props;
+    const { historyList } = this.state;
+
+    return (
+      <List
+        data={historyList}
+        onClick={onClick}
+        hasDate
+        onRemove={(keyword) => this.handleClickRemove(keyword)}
+      />
+    );
+  }
+}
+
+/*
 export default class HistoryList extends React.Component {
   constructor() {
     super();
@@ -48,6 +88,7 @@ export default class HistoryList extends React.Component {
     );
   }
 }
+*/
 
 /*
 export default class HistoryList extends List {
