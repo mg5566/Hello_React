@@ -17,10 +17,6 @@ export default class KeywordList extends React.Component {
     this.setState({ keywordList });
   }
 
-  renderItem(item, index) {
-
-  }
-
   render() {
     return (
       <List
