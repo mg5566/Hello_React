@@ -3,6 +3,7 @@ import List from "./List.js";
 import store from "../Store.js";
 import { formatRelativeDate } from "../helpers";
 
+/*
 export default class HistoryList extends List {
   componentDidMount() {
     const data = store.getHistoryList();
@@ -33,3 +34,4 @@ export default class HistoryList extends List {
     );
   }
 }
+*/
